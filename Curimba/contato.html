@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Escola de Música e Percussão – Contato</title>
+  <meta name="description" content="Fale conosco: endereço, horários e formulário de contato.">
+  <link rel="stylesheet" href="/assets/css/estilo.css">
+</head>
+<body>
+  <a href="#conteudo">Pular para o conteúdo</a>
+
+  <header>
+    <h1>Contato</h1>
+    <nav aria-label="Navegação principal">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="cursos.html">Cursos</a></li>
+        <li><a href="professores.html">Professores</a></li>
+        <li><a href="eventos.html">Eventos</a></li>
+        <li><a href="matriculas.html">Matrículas</a></li>
+        <li><a href="acessibilidade.html">Acessibilidade</a></li>
+        <li><a href="contato.html" aria-current="page">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section aria-labelledby="dados">
+      <h2 id="dados">Dados de contato</h2>
+      <address>
+        Endereço completo • Cidade/UF • CEP<br>
+        Telefone: (00) 0000-0000<br>
+        E-mail: contato@escola-percussao.exemplo
+      </address>
+      <p><strong>Horário de atendimento:</strong> Seg–Sex, <time datetime="09:00">9h</time>–<time datetime="18:00">18h</time></p>
+    </section>
+
+    <section aria-labelledby="form">
+      <h2 id="form">Formulário</h2>
+      <p id="instrucoes">Preencha todos os campos obrigatórios marcados com “*”.</p>
+      <form aria-describedby="instrucoes" action="#" method="post">
+        <fieldset>
+          <legend>Seus dados</legend>
+          <p>
+            <label for="nome">Nome completo *</label><br>
+            <input id="nome" name="nome" type="text" required aria-required="true">
+          </p>
+          <p>
+            <label for="email">E-mail *</label><br>
+            <input id="email" name="email" type="email" required aria-required="true">
+          </p>
+          <p>
+            <label for="assunto">Assunto *</label><br>
+            <input id="assunto" name="assunto" type="text" required aria-required="true">
+          </p>
+          <p>
+            <label for="mensagem">Mensagem *</label><br>
+            <textarea id="mensagem" name="mensagem" rows="6" required aria-required="true"></textarea>
+          </p>
+          <p>
+            <label for="acess">Necessidades de acessibilidade (opcional)</label><br>
+            <textarea id="acess" name="acess" rows="3" aria-describedby="hint-acess"></textarea>
+            <span id="hint-acess">Descreva recursos ou apoio desejado.</span>
+          </p>
+        </fieldset>
+        <p>
+          <button type="submit">Enviar</button>
+          <button type="reset">Limpar</button>
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p><small>&copy; <time datetime="2025">2025</time> Escola de Música e Percussão.</small></p>
+  </footer>
+</body>
+</html>

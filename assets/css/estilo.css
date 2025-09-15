@@ -1,0 +1,305 @@
+/* =========================================
+   Tema: Umbanda & Atabaque
+   Arquivo: assets/css/estilo.css
+   Filosofia: alto contraste, tipografia clara,
+   navegação acessível, zero firula desnecessária.
+   ========================================= */
+
+/* ---------- Reset & bases sem quebrar acessibilidade ---------- */
+:root{
+  /* Paleta – claro */
+  --bg: #fffdfa;            /* branco quente (vela acesa) */
+  --fg: #1b1b1b;            /* texto principal */
+  --muted: #4a4a4a;         /* texto secundário */
+  --brand: #b8860b;         /* dourado/latão do atabaque */
+  --brand-strong: #8b6508;  /* dourado escuro */
+  --accent: #2b2b2b;        /* preto (guias) */
+  --wood: #8f5d2f;          /* marrom madeira (corpo do atabaque) */
+  --wood-ink: #5e3b1b;      /* marrom escuro (detalhe) */
+  --focus: #0a84ff;         /* azul padrão de foco (visível) */
+  --ring: 3px;
+
+  /* Espaçamento & raio */
+  --gap-xs: .375rem;
+  --gap-sm: .75rem;
+  --gap: 1rem;
+  --gap-lg: 1.5rem;
+  --gap-xl: 2rem;
+  --radius: .6rem;
+  --maxw: 72rem; /* ~1152px */
+
+  /* Tipografia */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --lead: 1.7;
+  --lead-tight: 1.35;
+  --size-hero: clamp(1.6rem, 2.5vw + .8rem, 2.6rem);
+  --size-h2: clamp(1.25rem, 1.5vw + .6rem, 1.75rem);
+  --size-h3: clamp(1.1rem, 1vw + .55rem, 1.35rem);
+  --size-base: 1rem;
+  --size-small: .9375rem;
+}
+
+/* Dark mode opcional (automático) */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0e0e0e;
+    --fg: #f3f3f3;
+    --muted: #bdbdbd;
+    --brand: #e0ad3a;
+    --brand-strong: #c9962e;
+    --accent: #f6f6f6;
+    --wood: #b37a44;
+    --wood-ink: #dcb892;
+    --focus: #4da3ff;
+  }
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
+
+body{
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--size-base);
+  line-height: var(--lead);
+  color: var(--fg);
+  background: var(--bg);
+}
+
+/* Limites de largura e respiro */
+main, header, footer, .container{
+  width: min(100%, var(--maxw));
+  margin-inline: auto;
+  padding-inline: var(--gap);
+}
+
+/* ---------- Acessibilidade & foco ---------- */
+a { color: var(--brand-strong); }
+a:hover { text-decoration: underline; }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: var(--ring) solid var(--focus);
+  outline-offset: 2px;
+  border-radius: .25rem;
+}
+
+/* Link de pular conteúdo (skip link) */
+a[href^="#conteudo"]{
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+a[href^="#conteudo"]:focus{
+  left: var(--gap);
+  top: var(--gap);
+  background: var(--brand);
+  color: #000;
+  padding: .5rem .75rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+/* ---------- Cabeçalhos e texto ---------- */
+h1, h2, h3 {
+  line-height: var(--lead-tight);
+  margin-block: var(--gap);
+}
+h1 { font-size: var(--size-hero); }
+h2 { font-size: var(--size-h2); }
+h3 { font-size: var(--size-h3); }
+p, ul, ol { margin-block: .75rem 1rem; }
+small { font-size: var(--size-small); color: var(--muted); }
+
+/* ---------- Cabeçalho (com faixa “atabaque”) ---------- */
+header{
+  padding-block: var(--gap-lg);
+  border-bottom: 6px solid var(--wood);
+  background:
+    linear-gradient( to right,
+      color-mix(in oklab, var(--wood) 65%, transparent),
+      transparent 50%),
+    linear-gradient( to left,
+      color-mix(in oklab, var(--brand) 40%, transparent),
+      transparent 50%),
+    var(--bg);
+}
+header h1{
+  margin-block-end: .25rem;
+}
+header p{
+  color: var(--muted);
+  margin-block-start: 0;
+}
+
+/* ---------- Navegação ---------- */
+nav[aria-label="Navegação principal"] ul{
+  list-style: none;
+  margin: var(--gap) 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem .75rem;
+}
+nav[aria-label="Navegação principal"] a{
+  display: inline-block;
+  text-decoration: none;
+  padding: .45rem .7rem;
+  border-radius: .5rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 20%, transparent);
+  background: color-mix(in oklab, var(--bg) 85%, var(--wood) 15%);
+  color: var(--accent);
+}
+nav[aria-label="Navegação principal"] a:hover{
+  background: color-mix(in oklab, var(--bg) 75%, var(--wood) 25%);
+}
+nav[aria-label="Navegação principal"] a[aria-current="page"]{
+  background: var(--brand);
+  color: #111;
+  font-weight: 600;
+  border-color: color-mix(in oklab, var(--brand) 60%, var(--accent) 40%);
+}
+
+/* ---------- Main ---------- */
+main{ padding-block: var(--gap-lg) var(--gap-xl); }
+section + section{ margin-block-start: var(--gap-xl); }
+article{ padding-block: .25rem .5rem; }
+
+/* Figuras */
+figure{
+  margin: var(--gap) 0;
+  padding: .5rem;
+  border: 1px dashed color-mix(in oklab, var(--wood) 40%, var(--bg) 60%);
+  border-radius: var(--radius);
+}
+figcaption{
+  color: var(--muted);
+  font-size: .95rem;
+  margin-top: .35rem;
+}
+
+/* ---------- Tabelas acessíveis ---------- */
+table{
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: var(--gap);
+  border: 1px solid color-mix(in oklab, var(--accent) 20%, transparent);
+}
+caption{
+  text-align: left;
+  font-weight: 600;
+  padding: .5rem;
+}
+thead th{
+  text-align: left;
+  border-bottom: 2px solid var(--accent);
+  padding: .6rem;
+  background: color-mix(in oklab, var(--brand) 25%, var(--bg) 75%);
+}
+tbody td{
+  padding: .6rem;
+  border-top: 1px solid color-mix(in oklab, var(--accent) 18%, transparent);
+}
+tbody tr:nth-child(even){
+  background: color-mix(in oklab, var(--bg) 90%, var(--wood) 10%);
+}
+
+/* ---------- Formulários ---------- */
+form{
+  margin-block: var(--gap);
+  padding: var(--gap);
+  border: 1px solid color-mix(in oklab, var(--accent) 20%, transparent);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--bg) 92%, var(--brand) 8%);
+}
+fieldset{
+  border: 1px solid color-mix(in oklab, var(--accent) 25%, transparent);
+  border-radius: var(--radius);
+  padding: var(--gap);
+}
+legend{ font-weight: 600; padding: 0 .3rem; }
+label{ display: inline-block; margin-bottom: .25rem; }
+
+input, textarea, select{
+  width: min(48rem, 100%);
+  padding: .6rem .7rem;
+  border-radius: .45rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 25%, transparent);
+  background: #fff;
+  color: #111;
+}
+@media (prefers-color-scheme: dark){
+  input, textarea, select{
+    background: #1a1a1a;
+    color: #f1f1f1;
+    border-color: color-mix(in oklab, var(--accent) 35%, transparent);
+  }
+}
+
+button, [type="submit"], [type="reset"]{
+  cursor: pointer;
+  padding: .6rem .9rem;
+  border-radius: .5rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+  background: var(--brand);
+  color: #111;
+  font-weight: 600;
+}
+button:hover, [type="submit"]:hover, [type="reset"]:hover{
+  background: var(--brand-strong);
+  color: #000;
+}
+
+/* Mensagens auxiliares */
+#hint-acess{
+  display: block;
+  margin-top: .25rem;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* ---------- Rodapé ---------- */
+footer{
+  padding-block: var(--gap-lg);
+  border-top: 6px solid var(--wood-ink);
+  background:
+    linear-gradient( to right,
+      color-mix(in oklab, var(--accent) 10%, transparent),
+      transparent 60%),
+    var(--bg);
+}
+footer p { margin: 0; }
+
+/* ---------- Utilitários ---------- */
+.visually-hidden{
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; clip-path: inset(50%);
+}
+
+/* Realce do alvo (ex.: ao clicar em “Pular para o conteúdo”) */
+:target{
+  scroll-margin-top: 1rem;
+  outline: var(--ring) solid var(--brand);
+  outline-offset: .2rem;
+}
+
+/* ---------- Impressão básica ---------- */
+@media print{
+  nav, footer a, button { text-decoration: none; }
+  a::after{ content: " (" attr(href) ")"; font-size: .85em; color: var(--muted); }
+  header, footer{
+    border: none;
+    background: none;
+  }
+}
